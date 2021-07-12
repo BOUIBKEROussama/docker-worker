@@ -23,7 +23,8 @@ services :
             context: planner
             dockerfile: Dockerfile
         container_name: planner
-        
+        environment:
+            - TASKS=4
         network_mode: host
 
     serveur3:
