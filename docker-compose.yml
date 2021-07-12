@@ -1,23 +1,42 @@
 version: '3.3'
 
 services :
+    serveur2:
+        image: worker
+        build:
+            context: worker
+            dockerfile: Dockerfile
+        container_name: worker1
+        environment:
+            - MULT=true
+            - ADD=true
+            - PORT=8080
+
+        ports:
+            - "8080:8080"
+        
+        network_mode: host
+    
     serveur1:
         image: planner
         build:
             context: planner
             dockerfile: Dockerfile
         container_name: planner
-        ports:
-            - "8080:8080"
         
         network_mode: host
-    serveur2:
+
+    serveur3:
         image: worker
         build:
             context: worker
             dockerfile: Dockerfile
-        container_name: worker
+        container_name: worker2
+        environment:
+            - MULT=true
+            - ADD=true
+            - PORT=8081
+
         ports:
-            - "3000:3000"
-        
+            - "8081:8081"
         network_mode: host
