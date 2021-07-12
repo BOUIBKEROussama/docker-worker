@@ -1,0 +1,23 @@
+version: '3.3'
+
+services :
+    serveur1:
+        image: planner
+        build:
+            context: planner
+            dockerfile: Dockerfile
+        container_name: planner
+        ports:
+            - "8080:8080"
+        
+        network_mode: host
+    serveur2:
+        image: worker
+        build:
+            context: worker
+            dockerfile: Dockerfile
+        container_name: worker
+        ports:
+            - "3000:3000"
+        
+        network_mode: host
